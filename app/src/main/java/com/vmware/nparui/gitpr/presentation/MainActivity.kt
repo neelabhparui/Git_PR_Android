@@ -1,7 +1,8 @@
-package com.vmware.nparui.gitpr
+package com.vmware.nparui.gitpr.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.vmware.nparui.gitpr.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
