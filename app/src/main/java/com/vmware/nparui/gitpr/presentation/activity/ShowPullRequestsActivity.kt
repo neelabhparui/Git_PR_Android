@@ -10,6 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ShowPullRequestsActivity : AppCompatActivity() {
+
     private lateinit var binding : ActivityMainBinding
     private val showPullRequestsViewModel: ShowPullRequestsViewModel by viewModels()
 
