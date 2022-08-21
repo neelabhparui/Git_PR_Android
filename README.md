@@ -1,10 +1,15 @@
 # GitPR App
 
-##Desciption
+## Desciption
 Android App to display All Closed Pull Requests from Github public
 repository of your own code.
 
-##Uses
+The App follows clean MVVM architecture
+
+## Screenshot
+![ScreenShot](https://ibb.co/9Wk1C1s)
+
+## Uses
 - Kotlin
 - Retrofit
 - ReactiveX
@@ -12,3 +17,4 @@ repository of your own code.
 - Robolectric
 - Mockito
 - Mockk
+- Picasso
