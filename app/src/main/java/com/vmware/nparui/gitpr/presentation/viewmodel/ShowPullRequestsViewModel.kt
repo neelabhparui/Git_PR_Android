@@ -17,12 +17,19 @@ class ShowPullRequestsViewModel @Inject constructor(private val pullRequestsUseC
 
     val adapter = PRListAdapter(ArrayList())
 
+    var propertyChangeListener : PropertyChangeListener? = null
+
     override fun onStart(owner: LifecycleOwner) {
         super.onStart(owner)
         pullRequestsUseCase.startFetch().observe(owner) {
             Log.println(Log.INFO, TAG, "data - $it")
             adapter.update(it)
+            propertyChangeListener?.notifyPropertyChanged()
         }
+    }
+
+    fun register(listener: PropertyChangeListener) {
+        propertyChangeListener = listener
     }
 
     fun nextPage() {
@@ -39,5 +46,9 @@ class ShowPullRequestsViewModel @Inject constructor(private val pullRequestsUseC
     override fun onStop(owner: LifecycleOwner) {
         super.onStop(owner)
         pullRequestsUseCase.stop()
+    }
+
+    interface PropertyChangeListener {
+        fun notifyPropertyChanged()
     }
 }
