@@ -6,6 +6,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.vmware.nparui.gitpr.data.di.RetrofitPullRequestAPI
 import com.vmware.nparui.gitpr.data.entities.PullRequestInfo
+import com.vmware.nparui.gitpr.domain.FAIL
+import com.vmware.nparui.gitpr.domain.PRData
+import com.vmware.nparui.gitpr.domain.SUCCESS
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
@@ -19,9 +22,9 @@ class PRRepository @Inject constructor(
     @RetrofitPullRequestAPI private val prApi : PullRequestAPI
     ) {
 
-    private val _prList : MutableLiveData<List<PullRequestInfo>> = MutableLiveData()
+    private val _prList : MutableLiveData<PRData> = MutableLiveData()
 
-    val prList : LiveData<List<PullRequestInfo>> = _prList
+    val prList : LiveData<PRData> = _prList
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     val compositeDisposable = CompositeDisposable()
@@ -35,11 +38,13 @@ class PRRepository @Inject constructor(
 
                 override fun onSuccess(t: List<PullRequestInfo>) {
                     Log.println(Log.INFO, TAG, "result - $t")
-                    _prList.value = t
+                    val data = PRData(SUCCESS, t, null)
+                    _prList.value = data
                 }
 
                 override fun onError(e: Throwable) {
                     Log.println(Log.ERROR, TAG, e.toString())
+                    _prList.value = PRData(FAIL, null, e.message)
                 }
             }))
     }
@@ -49,7 +54,7 @@ class PRRepository @Inject constructor(
     }
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    fun setList(list: List<PullRequestInfo>) {
+    fun setData(list: PRData) {
         _prList.value = list
     }
 }

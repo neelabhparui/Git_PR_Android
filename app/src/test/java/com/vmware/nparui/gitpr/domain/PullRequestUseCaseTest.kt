@@ -29,7 +29,7 @@ class PullRequestUseCaseTest : RobolectricTestCase() {
 
     @Test
     fun testStartFetch() {
-        val list = MutableLiveData<List<PullRequestInfo>>()
+        val list = MutableLiveData<PRData>()
         var polls = 0
         every { prRepository.prList } returns list
         every { prRepository.poll(any()) } answers { polls++ }
@@ -40,7 +40,7 @@ class PullRequestUseCaseTest : RobolectricTestCase() {
 
     @Test
     fun testNextPage() {
-        val list = MutableLiveData<List<PullRequestInfo>>()
+        val list = MutableLiveData<PRData>()
         every { prRepository.prList } returns list
         var polls = 0
         every { prRepository.poll(2) } answers { polls++ }
@@ -51,7 +51,7 @@ class PullRequestUseCaseTest : RobolectricTestCase() {
 
     @Test
     fun testPrevPage_not_first() {
-        val list = MutableLiveData<List<PullRequestInfo>>()
+        val list = MutableLiveData<PRData>()
         every { prRepository.prList } returns list
         var polls = 0
         every { prRepository.poll(1) } answers { polls++ }
@@ -63,7 +63,7 @@ class PullRequestUseCaseTest : RobolectricTestCase() {
 
     @Test
     fun testPrevPage_first() {
-        val list = MutableLiveData<List<PullRequestInfo>>()
+        val list = MutableLiveData<PRData>()
         every { prRepository.prList } returns list
         var polls = 0
         every { prRepository.poll(1) } answers { polls++ }
@@ -75,10 +75,10 @@ class PullRequestUseCaseTest : RobolectricTestCase() {
 
     @Test
     fun testShowNext() {
-        val listLD = MutableLiveData<List<PullRequestInfo>>()
+        val listLD = MutableLiveData<PRData>()
         val prInfo = PullRequestInfo(0,"", "",  UserInfo("sa", "", null), "", "", HeadInfo(""), BaseInfo(""))
         val list = arrayListOf(prInfo, prInfo, prInfo, prInfo, prInfo)
-        listLD.value = list
+        listLD.value = PRData(SUCCESS, list, null)
         every { prRepository.prList } returns listLD
         Assert.assertTrue(pullRequestUseCase.showNextPage())
         listLD.value = null

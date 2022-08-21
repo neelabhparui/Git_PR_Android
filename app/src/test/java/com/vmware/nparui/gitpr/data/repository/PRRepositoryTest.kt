@@ -5,6 +5,8 @@ import com.vmware.nparui.gitpr.data.entities.BaseInfo
 import com.vmware.nparui.gitpr.data.entities.HeadInfo
 import com.vmware.nparui.gitpr.data.entities.PullRequestInfo
 import com.vmware.nparui.gitpr.data.entities.UserInfo
+import com.vmware.nparui.gitpr.domain.PRData
+import com.vmware.nparui.gitpr.domain.SUCCESS
 import io.reactivex.rxjava3.core.Single
 import org.junit.Assert
 import org.junit.Test
@@ -35,9 +37,10 @@ class PRRepositoryTest : RobolectricTestCase() {
     @Test
     fun testGetPrList_not_empty() {
         val prInfo = PullRequestInfo(0,"", "",  UserInfo("sa", "", null), "", "", HeadInfo(""), BaseInfo(""))
-        prRepository.setList(listOf(prInfo))
+        prRepository.setData(PRData(SUCCESS, listOf(prInfo), null))
         Assert.assertNotNull(prRepository.prList)
-        Assert.assertEquals(1, prRepository.prList.value?.size)
+        Assert.assertEquals(SUCCESS, prRepository.prList.value?.status)
+        Assert.assertEquals(1, prRepository.prList.value?.data?.size)
     }
 
     @Test

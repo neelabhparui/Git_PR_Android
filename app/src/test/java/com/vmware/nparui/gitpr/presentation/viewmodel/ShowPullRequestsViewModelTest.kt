@@ -5,6 +5,7 @@ import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.MutableLiveData
 import com.vmware.nparui.gitpr.RobolectricTestCase
 import com.vmware.nparui.gitpr.data.entities.PullRequestInfo
+import com.vmware.nparui.gitpr.domain.PRData
 import com.vmware.nparui.gitpr.domain.PullRequestUseCase
 import io.mockk.every
 import io.mockk.mockk
@@ -30,7 +31,7 @@ class ShowPullRequestsViewModelTest : RobolectricTestCase() {
     }
     @Test
     fun testOnStart() {
-        val ld = MutableLiveData<List<PullRequestInfo>>()
+        val ld = MutableLiveData<PRData>()
         val owner = mockk<LifecycleOwner>()
         val lifecycle = LifecycleRegistry(owner)
         every { owner.lifecycle } returns lifecycle

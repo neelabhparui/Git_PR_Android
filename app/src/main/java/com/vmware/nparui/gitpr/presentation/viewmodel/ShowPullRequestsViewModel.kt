@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.vmware.nparui.gitpr.data.entities.PullRequestInfo
 import com.vmware.nparui.gitpr.domain.PullRequestUseCase
+import com.vmware.nparui.gitpr.domain.SUCCESS
 import com.vmware.nparui.gitpr.presentation.PRListAdapter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -23,7 +24,13 @@ class ShowPullRequestsViewModel @Inject constructor(private val pullRequestsUseC
         super.onStart(owner)
         pullRequestsUseCase.startFetch().observe(owner) {
             Log.println(Log.INFO, TAG, "data - $it")
-            adapter.update(it)
+            if (it.status == SUCCESS){
+                it.data?.let { list ->
+                    adapter.update(list)
+                }
+            } else {
+                propertyChangeListener?.handleError(it.message)
+            }
             propertyChangeListener?.notifyPropertyChanged()
         }
     }
@@ -50,5 +57,6 @@ class ShowPullRequestsViewModel @Inject constructor(private val pullRequestsUseC
 
     interface PropertyChangeListener {
         fun notifyPropertyChanged()
+        fun handleError(message : String?)
     }
 }
