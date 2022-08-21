@@ -51,8 +51,10 @@ class PRListAdapter(private val prList : ArrayList<PullRequestInfo>) : RecyclerV
                 LocalDateTime.parse(pullRequestInfo.createdAt, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"))
             val closedDatetime =
                 LocalDateTime.parse(pullRequestInfo.closedAt, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"))
-            created.text = createdDatetime.format(DateTimeFormatter.ofPattern("HH:mm '@' dd-MM-yy"))
-            closed.text = closedDatetime.format(DateTimeFormatter.ofPattern("HH:mm '@' dd-MM-yy"))
+            val createdAt = createdDatetime.format(DateTimeFormatter.ofPattern("HH:mm 'on' dd/MM/yy"))
+            val closedAt = closedDatetime.format(DateTimeFormatter.ofPattern("HH:mm 'on' dd/MM/yy"))
+            created.text = String.format(context.getString(R.string.opened), createdAt)
+            closed.text = String.format(context.getString(R.string.closed), closedAt)
         }
     }
 }
