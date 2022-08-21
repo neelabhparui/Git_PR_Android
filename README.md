@@ -7,7 +7,7 @@ repository of your own code.
 The App follows clean MVVM architecture
 
 ## Screenshot
-![ScreenShot](https://ibb.co/9Wk1C1s)
+[![Screenshot-2022-08-21-at-5-43-33-PM.png](https://i.postimg.cc/g0b4St4K/Screenshot-2022-08-21-at-5-43-33-PM.png)](https://postimg.cc/75XgbVFC)
 
 ## Uses
 - Kotlin
