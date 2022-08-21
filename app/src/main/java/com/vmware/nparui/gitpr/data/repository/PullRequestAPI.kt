@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface PullRequestAPI {
-    @GET("repos/neelabhparui/Git_PR_Android/pulls?state=closed")
+    @GET("repos/neelabhparui/Git_PR_Android/pulls")
     fun getClosedPullRequests(@Query("state") state : String = "closed"
                               ,@Query("per_page") perPage : Int = 5
                               ,@Query("page") page : Int) : Single<List<PullRequestInfo>>
