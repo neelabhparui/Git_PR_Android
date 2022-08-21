@@ -1,5 +1,6 @@
 package com.vmware.nparui.gitpr.data.di
 
+import com.vmware.nparui.gitpr.data.repository.PullRequestAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,14 +17,14 @@ const val PR_RETROFIT_URL = "https://api.github.com"
 @InstallIn(SingletonComponent::class)
 class DataModule {
 
-    @RetrofitPullRequest
+    @RetrofitPullRequestAPI
     @Provides
-    fun providesRetrofit() : Retrofit {
+    fun providesRetrofit() : PullRequestAPI {
         return Retrofit.Builder()
             .baseUrl(PR_RETROFIT_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-            .build()
+            .build().create(PullRequestAPI::class.java)
     }
 
     @DispatcherIO
