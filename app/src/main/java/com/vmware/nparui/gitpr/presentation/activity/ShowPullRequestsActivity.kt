@@ -3,6 +3,7 @@ package com.vmware.nparui.gitpr.presentation.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vmware.nparui.gitpr.R
@@ -31,6 +32,12 @@ class ShowPullRequestsActivity : AppCompatActivity(), ShowPullRequestsViewModel.
         runOnUiThread {
             binding.next.visibility = if (showPullRequestsViewModel.shouldShowNext()) View.VISIBLE else View.GONE
             binding.prev.visibility = if (showPullRequestsViewModel.shouldShowPrev()) View.VISIBLE else View.GONE
+        }
+    }
+
+    override fun handleError(message: String?) {
+        runOnUiThread {
+            Toast.makeText(this, String.format(getString(R.string.error), message), Toast.LENGTH_LONG).show()
         }
     }
 }

@@ -5,4 +5,5 @@
     <string name="closed">Closed at - %1$s</string>
     <string name="next_page">Next Page</string>
     <string name="prev_page">Prev Page</string>
+    <string name="error">Oops! Something went wrong \nError: %1$s</string>
 </resources>

@@ -23,7 +23,7 @@ class PullRequestUseCase @Inject constructor(
     private var page = 1
     private lateinit var job: Job
 
-    fun startFetch() : LiveData<List<PullRequestInfo>> {
+    fun startFetch() : LiveData<PRData> {
         job = CoroutineScope(dispatcher).launch {
             while (isActive){
                 prRepository.poll(page)
@@ -52,7 +52,7 @@ class PullRequestUseCase @Inject constructor(
     fun showPrevPage() = page > 1
 
     fun showNextPage() : Boolean {
-        prRepository.prList.value?.let {
+        prRepository.prList.value?.data?.let {
             if (it.size == PAGE_CAP) return true
         }
         return false
