@@ -1,6 +1,6 @@
 # GitPR App
 
-## Desciption
+## Description
 Android App to display All Closed Pull Requests from Github public
 repository of your own code.
 
@@ -36,7 +36,7 @@ The App follows MVVM clean architecture. It has 3 parts -
 Each has been represented by their packages
 
 **Data** layer is layer is responsible for fetching all the data from the git hub repo. We fetch the data for each page using [Retrofit](https://square.github.io/retrofit/).
-To know more about the APIs, read here - [Docs](https://developer.github.com/v3/)
+To know more about the APIs, read here - [Docs](https://developer.github.com/v3/). 
 After gathering the data we forward it to Domain Layer. 
 
 **Domain** layer contains all the business logic. It keeps track of the polling interval so that our data remains up to date. It also keeps track of the page we are on.
