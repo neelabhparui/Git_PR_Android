@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="avatar_dimen">60dp</dimen>
+    <dimen name="avatar_margin">10dp</dimen>
+    <dimen name="avatar_elevation">12dp</dimen>
+    <dimen name="avatar_radius">40dp</dimen>
+    <dimen name="desc_margin">20dp</dimen>
+    <dimen name="big_text_size">16sp</dimen>
+</resources>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_bg">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/view2"
+        android:layout_width="@dimen/avatar_dimen"
+        android:layout_height="@dimen/avatar_dimen"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="@dimen/avatar_margin"
+        android:layout_marginTop="@dimen/avatar_margin"
+        android:elevation="@dimen/avatar_elevation"
+        app:cardCornerRadius="@dimen/avatar_radius"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/avatar_img"
+            android:layout_width="@dimen/avatar_dimen"
+            android:layout_height="@dimen/avatar_dimen"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/default_avatar" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/pr_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/avatar_margin"
+        android:layout_marginTop="@dimen/avatar_margin"
+        android:layout_marginEnd="@dimen/avatar_margin"
+        android:text="title"
+        android:textAlignment="viewStart"
+        android:textSize="@dimen/big_text_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/pr_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/avatar_margin"
+        android:layout_marginEnd="@dimen/avatar_margin"
+        android:text="name : id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/pr_title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/pr_branch_info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/avatar_margin"
+        android:layout_marginEnd="@dimen/avatar_margin"
+        android:text="head -> base"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/pr_desc" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/pr_created_at"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/desc_margin"
+        android:layout_marginTop="@dimen/avatar_margin"
+        android:layout_marginEnd="@dimen/desc_margin"
+        android:text="created at "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pr_branch_info" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/pr_closed_at"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/desc_margin"
+        android:layout_marginEnd="@dimen/desc_margin"
+        android:layout_marginBottom="@dimen/avatar_margin"
+        android:text="closed at"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pr_created_at" />
+</androidx.constraintlayout.widget.ConstraintLayout>
