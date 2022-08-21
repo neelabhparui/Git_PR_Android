@@ -33,7 +33,8 @@ class ShowPullRequestsViewModel @Inject constructor(private val pullRequestsUseC
         pullRequestsUseCase.prevPage()
     }
 
-    fun shouldShowPageOptions() = pullRequestsUseCase.showPageOptions()
+    fun shouldShowNext() = pullRequestsUseCase.showNextPage()
+    fun shouldShowPrev() = pullRequestsUseCase.showPrevPage()
 
     override fun onStop(owner: LifecycleOwner) {
         super.onStop(owner)

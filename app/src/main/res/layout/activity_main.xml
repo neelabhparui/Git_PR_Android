@@ -37,7 +37,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/prev"
             android:onClick="@{()-> viewModel.nextPage()}"
-            android:visibility="@{viewModel.shouldShowPageOptions()? View.VISIBLE : View.GONE}"/>
+            android:visibility="@{viewModel.shouldShowNext()? View.VISIBLE : View.GONE}"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/prev"
@@ -50,7 +50,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             android:onClick="@{() -> viewModel.prevPage()}"
-            android:visibility="@{viewModel.shouldShowPageOptions()? View.VISIBLE : View.GONE}"/>
+            android:visibility="@{viewModel.shouldShowPrev()? View.VISIBLE : View.GONE}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

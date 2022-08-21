@@ -1,5 +1,6 @@
 package com.vmware.nparui.gitpr.domain
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import com.vmware.nparui.gitpr.data.di.DispatcherIO
 import com.vmware.nparui.gitpr.data.entities.PullRequestInfo
@@ -34,19 +35,23 @@ class PullRequestUseCase @Inject constructor(
 
     fun nextPage() {
         page++
-        job.cancel()
+        if (this::job.isInitialized)
+            job.cancel()
         startFetch()
     }
 
     fun prevPage() {
         if (page>0) {
             page--
-            job.cancel()
+            if (this::job.isInitialized)
+                job.cancel()
             startFetch()
         }
     }
 
-    fun showPageOptions() : Boolean {
+    fun showPrevPage() = page > 1
+
+    fun showNextPage() : Boolean {
         prRepository.prList.value?.let {
             if (it.size == PAGE_CAP) return true
         }
@@ -56,5 +61,10 @@ class PullRequestUseCase @Inject constructor(
     fun stop() {
         prRepository.close()
         dispatcher.cancel()
+    }
+
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    fun setPage(p : Int) {
+        page = p
     }
 }
